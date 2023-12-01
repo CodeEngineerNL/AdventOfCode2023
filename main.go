@@ -4,6 +4,7 @@ import (
 	"AdventOfCode2023/days"
 	"fmt"
 	"reflect"
+	"time"
 )
 
 func runDay(any Day, name string) int64 {
@@ -23,10 +24,16 @@ func main() {
 	}
 
 	for i, day := range runDays {
+		start := time.Now()
 		result1 := runDay(day, "Part1")
-		result2 := runDay(day, "Part2")
+		part1Duration := time.Since(start)
 
-		fmt.Printf("| Day %d | %20d | %20d |", i, result1, result2)
+		start = time.Now()
+		result2 := runDay(day, "Part2")
+		part2Duration := time.Since(start)
+
+		fmt.Printf("| Day %d | %20d | %8.2f ms | %20d | %8.2f ms |",
+			i+1, result1, float64(part1Duration.Microseconds())/1000, result2, float64(part2Duration.Microseconds())/1000)
 	}
 
 }
