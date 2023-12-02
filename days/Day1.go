@@ -23,7 +23,7 @@ func (d *Day1) Part1() int {
 var toScan = []string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 func (d *Day1) Part2() int {
-	input := util.ReadFile("input/Day2.txt")
+	input := util.ReadFile("input/Day1.txt")
 
 	total := 0
 	for _, line := range input {
