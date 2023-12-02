@@ -57,40 +57,30 @@ func (d *Day1) isDigit(c uint8) bool {
 }
 
 func (d *Day1) scanIt(line string) int {
-	num := d.scanForDigit(line)
-	num2 := d.scanForLastDigit(line)
+	num := 0
+	done := false
+	for i := 0; i < len(line) && !done; i++ {
+		num, done = d.getDigitOnPosition(line, i)
+	}
+
+	num2 := 0
+	done = false
+	for i := len(line) - 1; i >= 0 && !done; i-- {
+		num2, done = d.getDigitOnPosition(line, i)
+	}
 
 	return num*10 + num2
 }
 
-func (d *Day1) scanForDigit(line string) int {
-	for i := 0; i < len(line); i++ {
-		if d.isDigit(line[i]) {
-			return int(line[i] - '0')
-		}
-
-		for scanI, val := range toScan {
-			if strings.HasPrefix(line[i:], val) {
-				return scanI
-			}
-		}
+func (d *Day1) getDigitOnPosition(line string, i int) (int, bool) {
+	if d.isDigit(line[i]) {
+		return int(line[i] - '0'), true
 	}
 
-	return 0
-}
-
-func (d *Day1) scanForLastDigit(line string) int {
-	for i := len(line) - 1; i >= 0; i-- {
-		if d.isDigit(line[i]) {
-			return int(line[i] - '0')
-		}
-
-		for scanI, val := range toScan {
-			if strings.HasPrefix(line[i:], val) {
-				return scanI
-			}
+	for scanI, val := range toScan {
+		if strings.HasPrefix(line[i:], val) {
+			return scanI, true
 		}
 	}
-
-	return 0
+	return 0, false
 }
