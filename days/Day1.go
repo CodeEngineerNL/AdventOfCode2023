@@ -5,14 +5,10 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 type Day1 struct{}
-
-type numStrPos struct {
-	str string
-	pos int
-}
 
 func (d *Day1) Part1() int {
 	input := d.getInput()
@@ -26,10 +22,12 @@ func (d *Day1) Part1() int {
 	return total
 }
 
+var toScan = []string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
+
 func (d *Day1) Part2() int {
 	input := d.getInput()
 
-	total := 9
+	total := 0
 	for _, line := range input {
 		res := d.scanIt(line)
 		total += res
@@ -61,44 +59,21 @@ func (d *Day1) isDigit(c uint8) bool {
 }
 
 func (d *Day1) scanIt(line string) int {
-	toScan := []numStrPos{
-		{"zero", 0},
-		{"one", 0},
-		{"two", 0},
-		{"three", 0},
-		{"four", 0},
-		{"five", 0},
-		{"six", 0},
-		{"seven", 0},
-		{"eight", 0},
-		{"nine", 0},
-	}
-
-	num := d.scanForDigit(line, toScan)
-	num2 := d.scanForLastDigit(line, toScan)
+	num := d.scanForDigit(line)
+	num2 := d.scanForLastDigit(line)
 
 	return num*10 + num2
 }
 
-func (d *Day1) scanForDigit(line string, toScan []numStrPos) int {
+func (d *Day1) scanForDigit(line string) int {
 	for i := 0; i < len(line); i++ {
 		if d.isDigit(line[i]) {
 			return int(line[i] - '0')
 		}
 
-		for val := range toScan {
-			scanThis := &toScan[val]
-
-			if scanThis.str[scanThis.pos] == line[i] {
-				scanThis.pos = scanThis.pos + 1
-			} else if scanThis.str[0] == line[i] {
-				scanThis.pos = 1
-			} else {
-				scanThis.pos = 0
-			}
-
-			if scanThis.pos == len(scanThis.str) {
-				return val
+		for scanI, val := range toScan {
+			if strings.HasPrefix(line[i:], val) {
+				return scanI
 			}
 		}
 	}
@@ -106,29 +81,15 @@ func (d *Day1) scanForDigit(line string, toScan []numStrPos) int {
 	return 0
 }
 
-func (d *Day1) scanForLastDigit(line string, toScan []numStrPos) int {
-	for i := range toScan {
-		toScan[i].pos = len(toScan[i].str) - 1
-	}
-
+func (d *Day1) scanForLastDigit(line string) int {
 	for i := len(line) - 1; i >= 0; i-- {
 		if d.isDigit(line[i]) {
 			return int(line[i] - '0')
 		}
 
-		for val := range toScan {
-			scanThis := &toScan[val]
-
-			if scanThis.str[scanThis.pos] == line[i] {
-				scanThis.pos = scanThis.pos - 1
-			} else if scanThis.str[len(scanThis.str)-1] == line[i] {
-				scanThis.pos = len(scanThis.str) - 2
-			} else {
-				scanThis.pos = len(scanThis.str) - 1
-			}
-
-			if scanThis.pos == -1 {
-				return val
+		for scanI, val := range toScan {
+			if strings.HasPrefix(line[i:], val) {
+				return scanI
 			}
 		}
 	}
