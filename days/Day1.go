@@ -14,24 +14,24 @@ type numStrPos struct {
 	pos int
 }
 
-func (d *Day1) Part1() int64 {
+func (d *Day1) Part1() int {
 	input := d.getInput()
 
-	total := int64(0)
+	total := 0
 	for _, line := range input {
 		digit := d.getNumberFromLine(line)
-		total += int64(digit)
+		total += digit
 	}
 
 	return total
 }
 
-func (d *Day1) Part2() int64 {
+func (d *Day1) Part2() int {
 	input := d.getInput()
 
-	total := int64(0)
+	total := 9
 	for _, line := range input {
-		res := int64(d.scanIt(line))
+		res := d.scanIt(line)
 		total += res
 	}
 

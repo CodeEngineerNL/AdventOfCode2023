@@ -12,8 +12,8 @@ func runDay(any Day, name string) int64 {
 }
 
 type Day interface {
-	Part1() int64
-	Part2() int64
+	Part1() int
+	Part2() int
 }
 
 func main() {

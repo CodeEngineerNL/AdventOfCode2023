@@ -10,20 +10,20 @@ import (
 
 type Day2 struct{}
 
-func (d *Day2) Part1() int64 {
+func (d *Day2) Part1() int {
 	input := d.getInput()
 
-	total := int64(0)
+	total := 0
 	for i, line := range input {
 		if d.isValidLine(line) {
-			total += int64(i + 1)
+			total += i + 1
 		}
 	}
 
 	return total
 }
 
-func (d *Day2) Part2() int64 {
+func (d *Day2) Part2() int {
 	input := d.getInput()
 
 	total := 0
@@ -31,7 +31,7 @@ func (d *Day2) Part2() int64 {
 		total += d.getLinePower(line)
 	}
 
-	return int64(total)
+	return total
 }
 
 func (d *Day2) isValidLine(line string) bool {
