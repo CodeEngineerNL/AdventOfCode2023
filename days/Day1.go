@@ -1,9 +1,7 @@
 package days
 
 import (
-	"bufio"
-	"log"
-	"os"
+	"AdventOfCode2023/util"
 	"strconv"
 	"strings"
 )
@@ -11,7 +9,7 @@ import (
 type Day1 struct{}
 
 func (d *Day1) Part1() int {
-	input := d.getInput()
+	input := util.ReadFile("input/Day1.txt")
 
 	total := 0
 	for _, line := range input {
@@ -25,7 +23,7 @@ func (d *Day1) Part1() int {
 var toScan = []string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 func (d *Day1) Part2() int {
-	input := d.getInput()
+	input := util.ReadFile("input/Day2.txt")
 
 	total := 0
 	for _, line := range input {
@@ -95,22 +93,4 @@ func (d *Day1) scanForLastDigit(line string) int {
 	}
 
 	return 0
-}
-
-func (d *Day1) getInput() []string {
-	f, err := os.Open("input/day1.txt")
-	if err != nil {
-		log.Fatal("Could not open input file")
-	}
-	defer f.Close()
-
-	var result []string
-
-	scanner := bufio.NewScanner(f)
-	scanner.Split(bufio.ScanLines)
-
-	for scanner.Scan() {
-		result = append(result, scanner.Text())
-	}
-	return result
 }
