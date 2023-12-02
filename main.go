@@ -21,19 +21,19 @@ func main() {
 
 	runDays := []Day{
 		&days.Day1{},
+		&days.Day2{},
 	}
 
 	for i, day := range runDays {
-		start := time.Now()
+		start1 := time.Now()
 		result1 := runDay(day, "Part1")
-		part1Duration := time.Since(start)
+		part1Duration := time.Since(start1)
 
-		start = time.Now()
+		start2 := time.Now()
 		result2 := runDay(day, "Part2")
-		part2Duration := time.Since(start)
+		part2Duration := time.Since(start2)
 
-		fmt.Printf("| Day %d | %20d | %8.2f ms | %20d | %8.2f ms |",
-			i+1, result1, float64(part1Duration.Microseconds())/1000, result2, float64(part2Duration.Microseconds())/1000)
+		fmt.Printf("| Day %d | %20d | %10s | %20d | %10s |\r\n", i+1, result1, part1Duration, result2, part2Duration)
 	}
 
 }
