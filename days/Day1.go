@@ -37,23 +37,19 @@ func (d *Day1) Part2() int {
 
 func (d *Day1) getNumberFromLine(line string) int {
 	var i int
-	for i = 0; i < len(line) && !d.isDigit(line[i]); i++ {
+	for i = 0; i < len(line) && !util.IsDigit(line[i]); i++ {
 		/* empty */
 	}
 
 	first := string(line[i])
 
-	for i = len(line) - 1; i > 0 && !d.isDigit(line[i]); i-- {
+	for i = len(line) - 1; i > 0 && !util.IsDigit(line[i]); i-- {
 		/* empty */
 	}
 
 	last := string(line[i])
 	digit, _ := strconv.Atoi(first + last)
 	return digit
-}
-
-func (d *Day1) isDigit(c uint8) bool {
-	return c >= '0' && c <= '9'
 }
 
 func (d *Day1) scanIt(line string) int {
@@ -73,7 +69,7 @@ func (d *Day1) scanIt(line string) int {
 }
 
 func (d *Day1) getDigitOnPosition(line string, i int) (int, bool) {
-	if d.isDigit(line[i]) {
+	if util.IsDigit(line[i]) {
 		return int(line[i] - '0'), true
 	}
 
