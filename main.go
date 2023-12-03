@@ -17,11 +17,10 @@ type Day interface {
 }
 
 func main() {
-	println("Hello world")
-
 	runDays := []Day{
 		&days.Day1{},
 		&days.Day2{},
+		&days.Day3{},
 	}
 
 	for i, day := range runDays {
