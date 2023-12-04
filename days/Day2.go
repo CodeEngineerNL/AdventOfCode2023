@@ -84,17 +84,11 @@ func (d *Day2) getLinePower(line string) int {
 
 			switch color {
 			case "red":
-				if num > maxRed {
-					maxRed = num
-				}
+				maxRed = max(maxRed, num)
 			case "green":
-				if num > maxGreen {
-					maxGreen = num
-				}
+				maxGreen = max(maxGreen, num)
 			case "blue":
-				if num > maxBlue {
-					maxBlue = num
-				}
+				maxBlue = max(maxBlue, num)
 			}
 		}
 	}
