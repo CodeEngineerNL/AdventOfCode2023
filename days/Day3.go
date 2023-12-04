@@ -8,7 +8,7 @@ import (
 type Day3 struct{}
 
 func (d *Day3) Part1() int {
-	input := util.ReadFile("input/Day3.txt")
+	input := util.ReadFile("input/day3.txt")
 
 	total := 0
 
@@ -45,7 +45,7 @@ func (d *Day3) Part1() int {
 }
 
 func (d *Day3) Part2() int {
-	input := util.ReadFile("input/Day3.txt")
+	input := util.ReadFile("input/day3.txt")
 
 	// Add a symbol before and after each line for the algorithm to work
 	for y, _ := range input {
