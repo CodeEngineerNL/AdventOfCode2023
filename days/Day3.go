@@ -94,7 +94,7 @@ func (d *Day3) scanForNumbers(posx, posy int, symbolMap []string) (int, int, boo
 	for y := posy - 1; y <= posy+1; y++ {
 		line := symbolMap[y]
 		for x := posx - 1; x <= posx+1; x++ {
-			if d.isValidPosition(x, y, width, height) && util.IsDigit(symbolMap[y][x]) {
+			if d.isValidPosition(x, y, width, height) && util.IsDigit(line[x]) {
 				startPos := x
 				endPos := x
 
