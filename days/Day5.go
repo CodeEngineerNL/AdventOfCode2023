@@ -22,9 +22,9 @@ func (d *Day5) Part1() int {
 
 	lowestDest := math.MaxInt
 
-	for _, seed := range seeds {
-		newSeed := seed
-		for i, _ := range maps {
+	for si := range seeds {
+		newSeed := seeds[si]
+		for i := range maps {
 			newSeed = d.findDest(newSeed, maps[i])
 		}
 		lowestDest = min(lowestDest, newSeed)
@@ -34,11 +34,9 @@ func (d *Day5) Part1() int {
 }
 
 func (d *Day5) findDest(num int, mapEntries []entry) int {
-	found := false
 	for mapI := range mapEntries {
 		sourceEnd := mapEntries[mapI].source + mapEntries[mapI].num
-		found = num >= mapEntries[mapI].source && num < sourceEnd
-		if found {
+		if num >= mapEntries[mapI].source && num < sourceEnd {
 			return mapEntries[mapI].dest + (num - mapEntries[mapI].source)
 		}
 	}
@@ -95,11 +93,9 @@ func (d *Day5) Part2() int {
 }
 
 func (d *Day5) findSource(num int, mapEntries []entry) int {
-	found := false
 	for mapI := range mapEntries {
 		destEnd := mapEntries[mapI].dest + mapEntries[mapI].num
-		found = num >= mapEntries[mapI].dest && num < destEnd
-		if found {
+		if num >= mapEntries[mapI].dest && num < destEnd {
 			return num - (mapEntries[mapI].dest - mapEntries[mapI].source)
 		}
 	}
