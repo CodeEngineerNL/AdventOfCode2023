@@ -24,6 +24,7 @@ func main() {
 		&days.Day4{},
 		&days.Day5{},
 		&days.Day6{},
+		&days.Day7{},
 	}
 
 	for i, day := range runDays {

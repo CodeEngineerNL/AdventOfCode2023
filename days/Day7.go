@@ -121,10 +121,6 @@ func (d *Day7) Part2() int {
 		return sort
 	})
 
-	for _, line := range lines {
-		println(line.hand, line.handType)
-	}
-
 	score := 0
 	for i := range lines {
 		score = score + (i+1)*lines[i].bet
