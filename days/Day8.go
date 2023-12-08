@@ -66,7 +66,7 @@ func (d *Day8) Part2() int {
 		moveCounters[i] = d.getStepsToZ(moves, positions[i])
 	}
 
-	return d.findLCM(moveCounters)
+	return util.FindLCM(moveCounters)
 }
 
 func (d *Day8) findLCM(nums []int) int {

@@ -25,3 +25,36 @@ func IsDigit(c uint8) bool {
 func Pow(x, y int) int {
 	return int(math.Pow(float64(x), float64(y)))
 }
+
+func FindLCM(nums []int) int {
+	lcm := 1
+	divisor := 2
+
+	for true {
+		counter := 0
+		divisible := false
+
+		for i := 0; i < len(nums); i++ {
+			if nums[i] == 1 {
+				counter++
+			}
+
+			if nums[i]%divisor == 0 {
+				divisible = true
+				nums[i] = nums[i] / divisor
+			}
+		}
+
+		if divisible {
+			lcm = lcm * divisor
+		} else {
+			divisor++
+		}
+
+		if counter == len(nums) {
+			return lcm
+		}
+	}
+
+	return 0
+}
