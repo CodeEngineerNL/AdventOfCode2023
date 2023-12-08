@@ -2,7 +2,6 @@ package util
 
 import (
 	"log"
-	"math"
 	"os"
 	"strings"
 )
@@ -20,10 +19,6 @@ func ReadFile(filename string) []string {
 
 func IsDigit(c uint8) bool {
 	return c >= '0' && c <= '9'
-}
-
-func Pow(x, y int) int {
-	return int(math.Pow(float64(x), float64(y)))
 }
 
 func FindLCM(nums []int) int {
