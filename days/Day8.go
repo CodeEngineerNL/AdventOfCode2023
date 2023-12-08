@@ -69,35 +69,6 @@ func (d *Day8) Part2() int {
 	return util.FindLCM(moveCounters)
 }
 
-func (d *Day8) findLCM(nums []int) int {
-	powered := make([]int, len(nums))
-
-	copy(powered, nums)
-
-	for {
-		i := 0
-		for ; i < len(powered)-1; i++ {
-			if powered[i] < powered[i+1] {
-				break
-			}
-		}
-
-		powered[i] += nums[i]
-
-		allEqual := true
-		for i := 1; i < len(powered) && allEqual; i++ {
-			if powered[i-1] != powered[i] {
-				allEqual = false
-			}
-		}
-		if allEqual {
-			break
-		}
-	}
-
-	return powered[0]
-}
-
 func (d *Day8) getStepsToZ(moves string, item *mapItem) int {
 	steps := 0
 	currentItem := item
