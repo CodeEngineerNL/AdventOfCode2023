@@ -14,7 +14,7 @@ func (d *Day9) Part1() int {
 	total := 0
 	for l := range lines {
 		line := lines[l]
-		lastDiffs := getLastDiffs(line)
+		lastDiffs := getLastDiffs(line, false)
 		predictions := make([]int, len(lastDiffs))
 
 		for i := len(lastDiffs) - 1; i > 0; i-- {
@@ -28,7 +28,7 @@ func (d *Day9) Part1() int {
 	return total
 }
 
-func getLastDiffs(nums []int) []int {
+func getLastDiffs(nums []int, history bool) []int {
 	diffs := make([]int, len(nums))
 	copy(diffs, nums)
 
@@ -46,7 +46,11 @@ func getLastDiffs(nums []int) []int {
 			}
 		}
 
-		lastDiffs = append(lastDiffs, diffs[numDiffs-1])
+		if history {
+			lastDiffs = append(lastDiffs, diffs[0])
+		} else {
+			lastDiffs = append(lastDiffs, diffs[numDiffs-1])
+		}
 
 		if numDiffs == numZeros {
 			break
@@ -61,7 +65,21 @@ func getLastDiffs(nums []int) []int {
 func (d *Day9) Part2() int {
 	lines := d.readInput()
 
-	return len(lines)
+	total := 0
+	for l := range lines {
+		line := lines[l]
+		lastDiffs := getLastDiffs(line, true)
+		predictions := make([]int, len(lastDiffs))
+
+		for i := len(lastDiffs) - 1; i > 0; i-- {
+			predictions[i-1] = lastDiffs[i-1] - predictions[i]
+		}
+
+		prediction := line[0] - predictions[0]
+		total += prediction
+	}
+
+	return total
 }
 
 func (d *Day9) readInput() (values [][]int) {
