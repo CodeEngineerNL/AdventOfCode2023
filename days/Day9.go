@@ -12,8 +12,7 @@ func (d *Day9) Part1() int {
 	lines := d.readInput()
 
 	total := 0
-	for l := range lines {
-		line := lines[l]
+	for _, line := range lines {
 		lastDiffs := getLastDiffs(line, false)
 		predictions := make([]int, len(lastDiffs))
 
@@ -66,8 +65,7 @@ func (d *Day9) Part2() int {
 	lines := d.readInput()
 
 	total := 0
-	for l := range lines {
-		line := lines[l]
+	for _, line := range lines {
 		lastDiffs := getLastDiffs(line, true)
 		predictions := make([]int, len(lastDiffs))
 
@@ -85,13 +83,11 @@ func (d *Day9) Part2() int {
 func (d *Day9) readInput() (values [][]int) {
 	lines := util.ReadFile("input/day9.txt")
 
-	for i := range lines {
+	for _, line := range lines {
 		numsEntry := make([]int, 0)
 
-		numsStr := strings.Fields(lines[i])
-
-		for j := range numsStr {
-			num, _ := strconv.Atoi(numsStr[j])
+		for _, line := range strings.Fields(line) {
+			num, _ := strconv.Atoi(line)
 			numsEntry = append(numsEntry, num)
 		}
 
