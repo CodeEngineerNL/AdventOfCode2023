@@ -18,16 +18,17 @@ type Day interface {
 
 func main() {
 	runDays := []Day{
-		//&days.Day1{},
-		//&days.Day2{},
-		//&days.Day3{},
-		//&days.Day4{},
-		//&days.Day5{},
-		//&days.Day6{},
-		//&days.Day7{},
-		//&days.Day8{},
-		//&days.Day9{},
+		&days.Day1{},
+		&days.Day2{},
+		&days.Day3{},
+		&days.Day4{},
+		&days.Day5{},
+		&days.Day6{},
+		&days.Day7{},
+		&days.Day8{},
+		&days.Day9{},
 		&days.Day10{},
+		&days.Day11{},
 	}
 
 	for i, day := range runDays {
@@ -39,7 +40,7 @@ func main() {
 		result2 := runDay(day, "Part2")
 		part2Duration := time.Since(start2)
 
-		fmt.Printf("| Day %d | %20d | %10s | %20d | %10s |\r\n", i+1, result1, part1Duration, result2, part2Duration)
+		fmt.Printf("| Day %2d | %20d | %10s | %20d | %10s |\r\n", i+1, result1, part1Duration, result2, part2Duration)
 	}
 
 }

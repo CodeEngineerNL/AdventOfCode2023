@@ -31,7 +31,6 @@ func (d *Day1) Part2() int {
 		total += res
 	}
 
-	println("total", total)
 	return total
 }
 

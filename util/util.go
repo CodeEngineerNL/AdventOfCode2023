@@ -17,6 +17,13 @@ func ReadFile(filename string) []string {
 	return result
 }
 
+func Abs(i int) int {
+	if i < 0 {
+		return -i
+	}
+	return i
+}
+
 func IsDigit(c uint8) bool {
 	return c >= '0' && c <= '9'
 }
